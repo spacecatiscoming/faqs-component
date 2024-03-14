@@ -56,6 +56,7 @@ function AccordionItem({ el, num, question, answer, curOpen, onOpen }) {
 
   function handleToggle() {
     onOpen(isOpen ? null : num);
+    console.log(num === curOpen);
   }
 
   return (
