@@ -65,7 +65,7 @@ function AccordionItem({ el, num, question, answer, curOpen, onOpen }) {
       <h1 className="title">{question}</h1>
       <p className="icon">{isOpen ? "-" : "+"}</p>
 
-      {isOpen ? <div className="content-box">{answer}</div> : ""}
+      {isOpen && <div className="content-box">{answer}</div>}
     </div>
   );
 }
