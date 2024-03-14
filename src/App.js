@@ -31,7 +31,40 @@ export default function App() {
   );
 }
 
-function Accordion() {
+function Accordion({ data }) {
   // Add State
-  const [currentOpen, setCurrentOpen] = useState(null);
+  const [currentOpen, setCurrentOpen] = useState(false);
+
+  return (
+    <div className="accordion">
+      {data.map((el, idx) => (
+        <AccordionItem
+          key={idx}
+          num={idx}
+          curOpen={currentOpen}
+          onOpen={setCurrentOpen}
+          question={el.question}
+          answer={el.answer}
+        />
+      ))}
+    </div>
+  );
+}
+
+function AccordionItem({ el, num, question, answer, curOpen, onOpen }) {
+  const isOpen = num === curOpen;
+
+  function handleToggle() {
+    onOpen(isOpen ? null : num);
+  }
+
+  return (
+    <div className="item" onClick={handleToggle}>
+      <p className="number">{num + 1}</p>
+      <h1 className="title">{question}</h1>
+      <p className="icon">{isOpen ? "-" : "+"}</p>
+
+      {isOpen ? <div className="content-box">{answer}</div> : ""}
+    </div>
+  );
 }
